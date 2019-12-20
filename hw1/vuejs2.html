@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Home work №1</title>
+
+    <style>
+        .image{
+            height: 500px;
+            align: right;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <header class="header">
+            <h1>{{sitename}}</h1>
+        </header>
+        <main>
+            <div v-bind:data-id='info.id'>
+                <div>
+                    <figure>   
+                        <img class="image" v-bind:src='info.image'>
+                    </figure>
+                </div>
+                <div>
+                    <h2 v-text="info.title"></h2>
+                    <p v-html="info.description"></p>
+                    <p>Фамилия: {{info.surname}}</p>
+                    <p>Имя: {{info.name}}</p>
+                    <p>Страна: {{info.country}}</p>
+                    <p>Создатель: {{info.creator}}</p>
+                    <p>Деятельность: {{info.working}}</p>
+                    <p>Семейное положение: {{info.relationship}}</p>
+                    <p>Логин: {{info.login}}</p>
+                    <p>Электронная почта: {{info.email}}</p>
+                    
+                </div>
+            </div>
+        </main>
+
+    </div>
+
+    <script>
+        let webStore = new Vue({
+            el: '#app',
+            data: {
+                sitename: 'Какой-то интересный сайт',
+                info:{
+                    id:1,
+                    image: 'img/2.jpeg',
+                    title:'Страница с информацией о пользователе сайта',
+                    surname: 'Мармеладова',
+                    name: 'Соня',
+                    description: 'Софья Семеновна Мармеладова родилась в семье мелкого чиновника. Отец девушки — пожилой мужчина, мало зарабатывает и любит выпить. Мать Сони давно умерла, девушка воспитывается мачехой.',
+                    country: 'Россия',
+                    creator: 'Федор Достоевский',
+                    working: 'проститутка',
+                    relationship: 'не замужем',
+                    login:'SofaM',
+                    email: 'sofamarmelad@gmail.com'
+                }
+            }
+        })
+    </script>
+    
+</body>
+</html>
+
+

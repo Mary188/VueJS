@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Home work №1</title>
+
+    <style>
+        .header{
+    padding-bottom: .125rem;
+    font-size: 1.5rem;
+    text-align: center;
+    color: #281362;
+    }
+    .products{
+        padding: 50px;
+        color: #170a3b;
+    }
+
+    </style>
+</head>
+<body>
+    <div id="app">
+        <header class="header">
+            <h1>{{sitename}}</h1>
+        </header>
+        <main>
+            <div v-bind:data-id='product.id'>
+                <div>
+                    <figure>   
+                        <img align="right" v-bind:src='product.image'>
+                    </figure>
+                </div>
+                <div class="products">
+                    <h2 v-text="product.title"></h2>
+                    <p v-html="product.description"></p>
+                    <p>Гарантия: {{product.guarantee}}</p>
+                    <p>Страна: {{product.country}}</p>
+                    <p>Серия: {{product.number}}</p>
+                    <p>Сухая уборка: {{product.dry}}</p>
+                    <p>Количество режимов работы: {{product.modes}}</p>
+                    <p>Работа от аккамулятора: {{product.workingHours}}</p>
+                    <p>Объем контейнера для пыли: {{product.containerVolume}}</p>
+                    <p>Тип управления: {{product.typeWork}}</p>
+                    <p>Цена: {{product.price | formatPrice}}</p>
+                </div>
+            </div>
+        </main>
+
+    </div>
+
+    <script>
+        let webStore = new Vue({
+            el: '#app',
+            data: {
+                sitename: 'Магазин пылесосов - "Nothing Sucks like an Electrolux"',
+                product:{
+                    id:1,
+                    image: 'img/1.jpg',
+                    title:'Ключевые преимущества! Обратите внимание: Пылесос 2 в 1! Удачное решение! Маневренность в диапазоне 180°! Циклоническая система фильтрации! Пользователи оценят! Подсветка зоны уборки!',
+                    description: 'Эффективная очистка и свежий воздух для всей семьи – с Electrolux. Идеально подходят для сухой уборки.',
+                    guarantee:'1 год',
+                    country: 'Венгрия',
+                    number: 'BGT56HFDN875CG',
+                    dry: 'Да',
+                    modes: '2',
+                    workingHours: '30 минут',
+                    containerVolume: '0,5 л',
+                    typeWork: 'электронный',
+                    price: 6500,
+                }
+            },
+            filters:{
+                    formatPrice: function(val){
+                        if(!val) return '';
+                        return val + " " + String.fromCharCode(8381);
+                    }
+                }
+        })
+    </script>
+    
+</body>
+</html>
+
+
