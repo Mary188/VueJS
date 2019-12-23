@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>HW №2</title>
+    <style>
+        p {
+            padding-right: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1>{{articleName}}</h1>
+        <img  v-bind:src="product.image">
+
+        <h2>Description:</h2>
+        <p>{{product.description}}</p>
+        <p v-show="visible">{{product.newText}}</p>
+
+        <button v-on:click='addNewText'>Подробнее</button>
+        <a 
+            v-show="visible"
+            href="#" 
+            v-on:click.prevent="visible = false">Скрыть</a>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                articleName:'Видоизмененный углерод (Altered Carbon)',
+                visible: false,
+                product:{
+                    description: 'На дворе XXVII век, и теперь человеческое сознание можно перемещать из одного тела в другое, что дает возможность одной личности проживать множество жизней...',
+                    newText: 'В этой реальности, однако, много проблем. Одна из них встала перед бывшим спецназовцем, которого нанял миллиардер для расследования гибели одного из своих тел. Все улики указывают на самоубийство, но, как водится в подобных фильмах, все оказывается не так просто. Закрученный сюжет в футуристических декорациях киберпанка, который понравится всем любителям небанальных и зрелищных сериалов.',
+                    image: 'img/1.jpg',          
+                },
+            },
+            methods: {
+                addNewText(){
+                    this.visible = true;
+                }
+            },
+        })
+    </script>
+</body>
+</html>
+
+
