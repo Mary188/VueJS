@@ -4,11 +4,7 @@
     <meta charset="UTF-8">
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <title>HW №2</title>
-    <style>
-        p {
-            padding-right: 50%;
-        }
-    </style>
+   
 </head>
 <body>
     <div id="app">
@@ -19,11 +15,8 @@
         <p>{{product.description}}</p>
         <p v-show="visible">{{product.newText}}</p>
 
-        <button v-on:click='addNewText'>Подробнее</button>
-        <a 
-            v-show="visible"
-            href="#" 
-            v-on:click.prevent="visible = false">Скрыть</a>
+        <button v-on:click='addNewText'>{{ visible ? 'Скрыть' : 'Подробнее' }}</button>
+
     </div>
 
     <script>
@@ -40,7 +33,7 @@
             },
             methods: {
                 addNewText(){
-                    this.visible = true;
+                    this.visible = !this.visible;
                 }
             },
         })
