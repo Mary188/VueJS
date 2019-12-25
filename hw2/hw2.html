@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>HW №2</title>
+    <style>
+        *{
+            margin-left: 60px;
+            margin-right: 60px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <nav>
+            <a href="#" v-on:click.prevent="changePage(1)">HOME</a>
+            <a href="#" v-on:click.prevent="changePage(2)">Проекты</a>
+            <a href="#" v-on:click.prevent="changePage(3)">Услуги</a>
+            <a href="#" v-on:click.prevent="changePage(4)">Контакты</a>
+        </nav>
+
+        <!-- HOME -->
+        <div v-if="PageHome">
+            <h1>Главная страница сайте с очень важной информацией</h1>
+            <img style="width: 800px;"  v-bind:src="product.image1">
+            <h2>Какой-то мотивирующий текст:</h2>
+            <p>{{product.description}}</p>
+        </div>
+        
+        <!-- Проекты -->
+        <div v-if="PageProjects">
+            <h1>Страница с проектами. Наши проекты</h1>
+            <h2>Проект номер 1</h2>
+            <img style="width: 300px;" v-bind:src="product.image2">
+            <p>Никто не может в одиночку сыграть симфонию. Для этого нужен целый оркестр</p>
+            <h2>Проект номер 2</h2>
+            <img style="width: 300px;"   v-bind:src="product.image2">
+            <p>Никто не может в одиночку сыграть симфонию. Для этого нужен целый оркестр</p>
+            <h2>Проект номер 3</h2>
+            <img style="width: 300px;"   v-bind:src="product.image2">
+            <p>Никто не может в одиночку сыграть симфонию. Для этого нужен целый оркестр</p>
+        </div>
+
+        <!-- Услуги -->
+        <div v-if="PageServices">
+            <h1>Страница с услугами. Наши услуги</h1>
+            <h2>Услуга номер 1</h2>
+            <img style="width: 300px;" v-bind:src="product.image3">
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cupiditate, magnam.</p>
+            <h2>Услуга номер 2</h2>
+            <img style="width: 300px;"   v-bind:src="product.image3">
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cupiditate, magnam.</p>
+            <h2>Услуга номер 3</h2>
+            <img style="width: 300px;"   v-bind:src="product.image3">
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cupiditate, magnam.</p>
+        </div>
+
+        <!-- Контакты -->
+        <div v-if="PageContacts">
+            <h1>Контакты</h1>
+            <h2>Телефон: 8 (921) 123 45 67</h2>
+            <p>Адрес: Невский пр-т, дом 1, офис 1</p>
+            <img style="width: 500px;" v-bind:src="product.image4">
+            
+        </div>
+
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                PageHome: true,
+                PageProjects: false,
+                PageServices: false,
+                PageContacts:false,
+                PageHome: false,
+                ActivePage: 1,
+                product:{
+                    description: 'Я знаю, героями не рождаются, ими становятся. Создавая свою мечту, изо дня в день закрепляя свое право строить свою судьбу в этом мире: своими идеалами, своими мозгами, своими руками...Раздвигая границы принятого в обществе, выходить за горизонт и приобретать свою личную свободу на право быть, быть тем, кем хочешь ты, быть хозяином своей судьбы, быть боссом своей жизни...Когда ты будешь готов, ты поймешь, что босс - это сила, исходящая от тебя, сила твоей внутренней энерги, те мечты, которые ты хранил глубоко в сердце. Смелость идти вперед, следовать своему решению, несмотря на страх и разочарование, смелость верить в свою судьбу и быть не как все. Настало время воплощать свои мечты. Неизвестный автор',
+                    image1: 'img/3.jpeg',  
+                    image2: 'img/2.jpeg', 
+                    image3: 'img/4.jpeg',   
+                    image4: 'img/5.jpeg',       
+                },
+            },
+
+            mounted: function() {
+                this.PageHome = true;
+            },
+            methods: {
+                changePage(ActivePage) {
+                    this.ActivePage = ActivePage;
+                    switch (this.ActivePage) {
+                        case 1:
+                            this.PageHome = true;
+                            this.PageProjects = false;
+                            this.PageServices = false;
+                            this.PageContacts = false;
+                            break;
+                        case 2:
+                            this.PageHome = false;
+                            this.PageProjects = true;
+                            this.PageServices = false;
+                            this.PageContacts = false;
+                            break;
+                        case 3:
+                            this.PageHome = false;
+                            this.PageProjects = false;
+                            this.PageServices = true;
+                            this.PageContacts = false;
+                            break;
+                        case 4:
+                            this.PageHome = false;
+                            this.PageProjects = false;
+                            this.PageServices = false;
+                            this.PageContacts = true;
+                            break;
+                        default:
+                            this.PageHome = true;
+                            this.PageProjects = false;
+                            this.PageServices = false;
+                            this.PageContacts = false;
+                            break;
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>
+
+
