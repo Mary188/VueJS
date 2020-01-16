@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+    <form id="app">
+
+        <h1>Курсы</h1>
+    
+            <ul>
+                <li v-for="service in services" 
+                    v-on:click="toggleActive(service)" 
+                    v-bind:class="{ 'active': service.active}"
+                >
+                    {{service.name}} <span>{{service.price | currency}}</span>
+                </li>
+            </ul>
+    
+        <div>
+            Итого: {{total() | currency}}
+        </div>
+    
+    </form>
+
+
+    <script>
+
+        Vue.filter('currency', function (value) {
+            return ' ₽ ' + value.toFixed(2);
+         });
+
+            new Vue({
+                el: '#app',
+                data: {
+                    services: [
+                        {
+                            name: 'HTML + CSS',
+                            price: 2000,
+                            active:true
+                        },{
+                            name: 'JavaScript',
+                            price: 3000,
+                            active:false
+                        },{
+                            name: 'Vue.JS',
+                            price: 4000,
+                            active:false
+                        },{
+                            name: 'Node.JS',
+                            price: 5000,
+                            active:false
+                        }
+                    ]
+                },
+                methods: {
+                    toggleActive: function(s){
+                        s.active = !s.active;
+                    },
+                    total: function(){
+
+                        let total = 0;
+
+                        this.services.forEach(function(s){
+                            if (s.active){
+                                total+= s.price;
+                            }
+                        });
+
+                    return total;
+                    }
+                }
+            });
+            
+    </script>
+    
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
